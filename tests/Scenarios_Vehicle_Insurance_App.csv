@@ -1,0 +1,23 @@
+,Scenarios,,,,,,,,,,,,,,,
+Attributes,StraightThrough,Engine performance between 1000 and 2000,Manufactured more than 5 Years in the Past,List price between 50K and 100K,Age between 18 an 25,Age between 56 and 70,Female,Start date month after next month,Insuarance sum between 15M and 35M,Merit Rating Super Bonus,Merit Rating malus between 10 and 17,Damage Insurance No Coverage,Damage Insurance Full Coverage,Euro Protection,Optional Products_3,Courtesy Car
+Engine Performance [kW],500,1500,500,500,500,500,500,500,500,500,500,500,500,500,500,500
+Date of Manufacture,{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-10y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]},{Date[][-3y][MM'/'dd'/'yyyy]}
+Number of Seats,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+Fuel Type,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol,Petrol
+List Price,20000,20000,20000,75000,20000,20000,20000,20000,20000,20000,20000,20000,20000,20000,20000,20000
+Annual Mileage,50000,50000,50000,50000,50000,50000,50000,50000,50000,50000,50000,50000,50000,50000,50000,50000
+Age,26,26,26,26,21,62,26,26,26,26,26,26,26,26,26,26
+Gender,Male,Male,Male,Male,Male,Male,Female,Male,Male,Male,Male,Male,Male,Male,Male,Male
+Country,United States,United States,United States,United States,United States,United States,United States,United States,United States,United States,United States,United States,United States,United States,United States,United States
+Occupation,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee,Employee
+Preferred Start Date,{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+2M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]},{DATE[][+1M+1d][MM'/'dd'/'yyyy]}
+Insurance Sum [�],"7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","25,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00","7,000,000.00"
+Merit Rating,Bonus 5,Bonus 5,Bonus 5,Bonus 5,Bonus 5,Bonus 5,Bonus 5,Bonus 5,Bonus 5,Super Bonus,Malus 13,Bonus 5,Bonus 5,Bonus 5,Bonus 5,Bonus 5
+Damage Insurance,Partial Coverage,Partial Coverage,Partial Coverage,Partial Coverage,Partial Coverage,Partial Coverage,Partial Coverage,Partial Coverage,Partial Coverage,Partial Coverage,Partial Coverage,No Coverage,Full Coverage,Partial Coverage,Partial Coverage,Partial Coverage
+Euro Protection,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE
+Legal Defense Insurance,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE
+Courtesy Car Option,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+Price Silver,331.00,337.00,334.00,466.00,331.00,331.00,331.00,331.00,338.00,322.00,370.00,282.00,348.00,333.00,283.00,342.00
+Price Gold,977.00,993.00,983.00,"1,374.00",977.00,977.00,947.00,977.00,995.00,948.00,"1,090.00",832.00,"1,024.00",981.00,833.00,"1,009.00"
+Price Platinum,"1,917.00","1,949.00","1,931.00","2,697.00","1,917.00","1,917.00","1,917.00","1,917.00","1,953.00","1,861.00","2,141.00","1,634.00","2,017.00","1,927.00","1,636.00","1,980.00"
+Price Ultimate,"3,652.00","3,712.00","3,678.00","5,137.00","3,652.00","3,652.00","3,652.00","3,652.00","3,721.00","3,546.00","4,078.00","3,112.00","3,841.00","3,670.00","3,117.00","3,772.00"
