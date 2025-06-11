@@ -6,4 +6,5 @@ install:
   - npm install
 
 script:
-  - npx nightwatch
+  - npx nightwatch tests/engineperformance.js
+
