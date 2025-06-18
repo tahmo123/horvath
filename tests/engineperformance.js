@@ -1,67 +1,90 @@
 const testdata = require('./testdata.js');
 
 module.exports = {
-  "Automated Vehicle Insurance Scenarios": function(browser) {
+  "Automated Vehicle Insurance Scenarios": function (browser) {
     Object.entries(testdata).forEach(([scenarioName, szenario]) => {
       browser.perform(() => {
         browser
           .url("http://sampleapp.tricentis.com/101/")
           .waitForElementVisible("body", 1000)
           .click("#nav_automobile")
-          .setValue("#make", "Audi")
-          .setValue("#engineperformance", szenario["Engine Performance [kW]"])
-          .setValue("#dateofmanufacture", "01/01/2021") // oder parse das CSV-Feld, wie du willst!
-          .setValue("#numberofseats", szenario["Number of Seats"])
-          .setValue("#fuel", "Petrol")
-          .setValue("#listprice", szenario["List Price"])
-          .setValue("#licenseplatenumber", "AB123CD")
-          .setValue("#annualmileage", szenario["Annual Mileage"])
+
+          // Vehicle Data
+          .setValue("#make", szenario["Make"] || "Audi")
+          .setValue("#engineperformance", szenario["Engine Performance [kW]"] || "120")
+          .setValue("#dateofmanufacture", szenario["Date of Manufacture"] || "01/01/2021")
+          .setValue("#numberofseats", szenario["Number of Seats"] || "5")
+          .setValue("#fuel", szenario["Fuel Type"] || "Petrol")
+          .setValue("#listprice", szenario["List Price"] || "25000")
+          .setValue("#licenseplatenumber", szenario["License Plate Number"] || "AB123CD")
+          .setValue("#annualmileage", szenario["Annual Mileage"] || "10000")
           .click("#nextenterinsurantdata")
 
-          // Insurant Data (Beispielwerte!)
-          .setValue("#firstname", "John")
-          .setValue("#lastname", "Doe")
-          .setValue("#birthdate", "01/01/1990")
+          // Insurant Data
+          .setValue("#firstname", szenario["First Name"] || "John")
+          .setValue("#lastname", szenario["Last Name"] || "Doe")
+          .setValue("#birthdate", szenario["Birthdate"] || "01/01/1990")
           .perform(() => {
-            browser.execute(function(gender) {
-              document.querySelector('input[name="Gender"][value="' + gender + '"]').click();
+            browser.execute(function (gender) {
+              const el = document.querySelector(`input[name='Gender'][value='${gender}']`);
+              if (el) el.click();
             }, [szenario["Gender"] || "Male"]);
           })
-          .setValue("#streetaddress", "Musterstraße 1")
-          .setValue("#country", "Germany")
-          .setValue("#zipcode", "12345")
-          .setValue("#city", "Berlin")
-          .setValue("#occupation", "Employee")
-          .setValue("#website", "https://example.com")
+          .setValue("#streetaddress", szenario["Street"] || "Musterstraße 1")
+          .setValue("#country", szenario["Country"] || "Germany")
+          .setValue("#zipcode", szenario["Zipcode"] || "12345")
+          .setValue("#city", szenario["City"] || "Berlin")
+          .setValue("#occupation", szenario["Occupation"] || "Employee")
+          .setValue("#website", szenario["Website"] || "https://example.com")
           .perform(() => {
-            browser.execute(function() {
-              document.querySelector("#other").click();
+            browser.execute(() => {
+              const hobby = document.querySelector("#other");
+              if (hobby) hobby.click();
             });
           })
           .click("#nextenterproductdata")
 
-          // Product Data (Beispiel)
-          .setValue("#startdate", "07/01/2025") // Passe an, je nach CSV!
-          .setValue("#insurancesum", "7.000.000,00")
-          .setValue("#meritrating", "Bonus 5")
-          .setValue("#damageinsurance", "Partial Coverage")
+          // Product Data
+          .setValue("#startdate", szenario["Preferred Start Date"] || "08/01/2025")
+          .setValue("#insurancesum", szenario["Insurance Sum [�]"] || "7.000.000,00")
+          .setValue("#meritrating", szenario["Merit Rating"] || "Bonus 5")
+          .setValue("#damageinsurance", szenario["Damage Insurance"] || "Partial Coverage")
           .perform(() => {
-            if (szenario["Euro Protection"] === 'true') {
+            const euro = (szenario["Euro Protection"] || "").toString().toLowerCase();
+            const legal = (szenario["Legal Defense Insurance"] || "").toString().toLowerCase();
+          
+            // Immer mindestens EINE Checkbox aktivieren!
+            if (euro === "true") {
               browser.execute(function() {
-                document.querySelector("#EuroProtection").click();
+                let input = document.querySelector('#EuroProtection');
+                if (input && !input.checked) input.click();
+                // Falls auch das nicht geht:
+                if (input && !input.checked) input.checked = true;
               });
             }
-            if (szenario["Legal Defense Insurance"] === 'true') {
+            if (legal === "true") {
               browser.execute(function() {
-                document.querySelector("#LegalDefenseInsurance").click();
+                let input = document.querySelector('#LegalDefenseInsurance');
+                if (input && !input.checked) input.click();
+                if (input && !input.checked) input.checked = true;
               });
             }
+            // Wenn beides "false", dann aktiviere EINE Checkbox (z.B. EuroProtection)
+            if (euro !== "true" && legal !== "true") {
+              browser.execute(function() {
+                let input = document.querySelector('#EuroProtection');
+                if (input && !input.checked) input.click();
+                if (input && !input.checked) input.checked = true;
+              });
+            }
+            // Extra Pause – kann bei langsamer UI helfen
+            browser.pause(500);
           })
-          .setValue("#courtesycar", "No")
+          .setValue("#courtesycar", szenario["Courtesy Car Option"] || "No")
           .click("#nextselectpriceoption")
 
           // Price Option
-          .waitForElementVisible('section#pricePlans .ideal-radio', 10000)
+          .waitForElementVisible('section#pricePlans .ideal-radio', 5000)
           .click('section#pricePlans .ideal-radio')
           .click("#nextsendquote")
 
@@ -77,6 +100,7 @@ module.exports = {
           .waitForElementVisible(".sweet-alert", 5000);
       });
     });
+
     browser.end();
   }
 };
