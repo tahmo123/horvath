@@ -46,7 +46,7 @@ module.exports = {
 
           // Product Data
           .setValue("#startdate", szenario["Preferred Start Date"] || "08/01/2025")
-          .setValue("#insurancesum", szenario["Insurance Sum [�]"] || "7.000.000,00")
+          .setValue("#insurancesum", szenario["Insurance Sum [ ]"] || "7.000.000,00")
           .setValue("#meritrating", szenario["Merit Rating"] || "Bonus 5")
           .setValue("#damageinsurance", szenario["Damage Insurance"] || "Partial Coverage")
           .perform(() => {
@@ -89,18 +89,20 @@ module.exports = {
           .click("#nextsendquote")
 
           // Send Quote
-          .waitForElementVisible("#email", 2000)
-          .setValue("#email", "test@example.com")
+          .setValue("#email", `test${Date.now()}@example.com`)
           .setValue("#phone", "1234567890")
-          .setValue("#username", "testuser")
+          .setValue("#username", `testuser${Math.floor(Math.random() * 100000)}`)
           .setValue("#password", "Test123!")
           .setValue("#confirmpassword", "Test123!")
           .setValue("#Comments", "Test comment")
+          .pause(1500) // Gib dem Frontend kurz Zeit!
           .click("#sendemail")
-          .waitForElementVisible(".sweet-alert", 5000);
+          .pause(5000)
+          .waitForElementVisible(".sweet-alert", 7000);
+
       });
     });
-
+    
     browser.end();
   }
 };
