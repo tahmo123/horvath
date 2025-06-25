@@ -2,107 +2,105 @@ const testdata = require('./testdata.js');
 
 module.exports = {
   "Automated Vehicle Insurance Scenarios": function (browser) {
-    Object.entries(testdata).forEach(([scenarioName, szenario]) => {
+    Object.entries(testdata).forEach(([scenarioName, szenario], idx, arr) => {
       browser.perform(() => {
         browser
           .url("http://sampleapp.tricentis.com/101/")
-          .waitForElementVisible("body", 1000)
+          .waitForElementVisible("body", 2000)
           .click("#nav_automobile")
+          .pause(800)
 
-          // Vehicle Data
-          .setValue("#make", szenario["Make"] || "Audi")
-          .setValue("#engineperformance", szenario["Engine Performance [kW]"] || "120")
-          .setValue("#dateofmanufacture", szenario["Date of Manufacture"] || "01/01/2021")
-          .setValue("#numberofseats", szenario["Number of Seats"] || "5")
-          .setValue("#fuel", szenario["Fuel Type"] || "Petrol")
-          .setValue("#listprice", szenario["List Price"] || "25000")
-          .setValue("#licenseplatenumber", szenario["License Plate Number"] || "AB123CD")
-          .setValue("#annualmileage", szenario["Annual Mileage"] || "10000")
+          // --- Enter Vehicle Data ---
+          .setValue("#make", szenario.make)
+          .setValue("#engineperformance", szenario.enginePerformance.toString())
+          .setValue("#dateofmanufacture", szenario.dateOfManufacture)
+          .setValue("#numberofseats", szenario.numberOfSeats.toString())
+          .setValue("#fuel", szenario.fuelType)
+          .setValue("#listprice", szenario.listPrice.toString())
+          .setValue("#licenseplatenumber", szenario.licensePlateNumber)
+          .setValue("#annualmileage", szenario.annualMileage.toString())
           .click("#nextenterinsurantdata")
+          .pause(700)
 
-          // Insurant Data
-          .setValue("#firstname", szenario["First Name"] || "John")
-          .setValue("#lastname", szenario["Last Name"] || "Doe")
-          .setValue("#birthdate", szenario["Birthdate"] || "01/01/1990")
+          // --- Enter Insurant Data ---
+          .setValue("#firstname", szenario.firstName)
+          .setValue("#lastname", szenario.lastName)
+          .setValue("#birthdate", szenario.birthdate)
           .perform(() => {
             browser.execute(function (gender) {
               const el = document.querySelector(`input[name='Gender'][value='${gender}']`);
               if (el) el.click();
-            }, [szenario["Gender"] || "Male"]);
+            }, [szenario.gender]);
           })
-          .setValue("#streetaddress", szenario["Street"] || "Musterstraße 1")
-          .setValue("#country", szenario["Country"] || "Germany")
-          .setValue("#zipcode", szenario["Zipcode"] || "12345")
-          .setValue("#city", szenario["City"] || "Berlin")
-          .setValue("#occupation", szenario["Occupation"] || "Employee")
-          .setValue("#website", szenario["Website"] || "https://example.com")
+          .setValue("#streetaddress", szenario.street)
+          .setValue("#country", szenario.country)
+          .setValue("#zipcode", szenario.zipcode)
+          .setValue("#city", szenario.city)
+          .setValue("#occupation", szenario.occupation)
+          .setValue("#website", szenario.website)
           .perform(() => {
-            browser.execute(() => {
+            browser.execute(function () {
               const hobby = document.querySelector("#other");
               if (hobby) hobby.click();
             });
           })
           .click("#nextenterproductdata")
+          .pause(700)
 
-          // Product Data
-          .setValue("#startdate", szenario["Preferred Start Date"] || "08/01/2025")
-          .setValue("#insurancesum", szenario["Insurance Sum [ ]"] || "7.000.000,00")
-          .setValue("#meritrating", szenario["Merit Rating"] || "Bonus 5")
-          .setValue("#damageinsurance", szenario["Damage Insurance"] || "Partial Coverage")
+          // --- Enter Product Data ---
+          .setValue("#startdate", szenario.preferredStartDate)
+          .setValue("#insurancesum", szenario.insuranceSum.toString())
+          .setValue("#meritrating", szenario.meritRating)
+          .setValue("#damageinsurance", szenario.damageInsurance)
           .perform(() => {
-            const euro = (szenario["Euro Protection"] || "").toString().toLowerCase();
-            const legal = (szenario["Legal Defense Insurance"] || "").toString().toLowerCase();
-          
-            // Immer mindestens EINE Checkbox aktivieren!
-            if (euro === "true") {
-              browser.execute(function() {
-                let input = document.querySelector('#EuroProtection');
+            if (szenario.euroProtection === true) {
+              browser.execute(function () {
+                let input = document.querySelector("#EuroProtection");
                 if (input && !input.checked) input.click();
-                // Falls auch das nicht geht:
-                if (input && !input.checked) input.checked = true;
               });
             }
-            if (legal === "true") {
-              browser.execute(function() {
-                let input = document.querySelector('#LegalDefenseInsurance');
+            if (szenario.legalDefenseInsurance === true) {
+              browser.execute(function () {
+                let input = document.querySelector("#LegalDefenseInsurance");
                 if (input && !input.checked) input.click();
-                if (input && !input.checked) input.checked = true;
               });
             }
-            // Wenn beides "false", dann aktiviere EINE Checkbox (z.B. EuroProtection)
-            if (euro !== "true" && legal !== "true") {
-              browser.execute(function() {
-                let input = document.querySelector('#EuroProtection');
-                if (input && !input.checked) input.click();
-                if (input && !input.checked) input.checked = true;
-              });
-            }
-            // Extra Pause – kann bei langsamer UI helfen
-            browser.pause(500);
           })
-          .setValue("#courtesycar", szenario["Courtesy Car Option"] || "No")
+          .setValue("#courtesycar", szenario.courtesyCarOption)
           .click("#nextselectpriceoption")
+          .pause(1200)
 
-          // Price Option
-          .waitForElementVisible('section#pricePlans .ideal-radio', 5000)
+          // --- Select Price Option ---
+          .waitForElementVisible('section#pricePlans .ideal-radio', 8000)
           .click('section#pricePlans .ideal-radio')
           .click("#nextsendquote")
+          .pause(800)
 
-          // Send Quote
-          .setValue("#email", `test${Date.now()}@example.com`)
+          // --- Send Quote ---
+          .setValue("#email", `khorzad${Date.now()}@example.com`)
           .setValue("#phone", "1234567890")
-          .setValue("#username", `testuser${Math.floor(Math.random() * 100000)}`)
+          .setValue("#username", `tahmoores${Math.floor(Math.random() * 100000)}`)
           .setValue("#password", "Test123!")
           .setValue("#confirmpassword", "Test123!")
-          .setValue("#Comments", "Test comment")
-          .pause(1500) // Gib dem Frontend kurz Zeit!
+          .setValue("#Comments", "Test comment from Group5")
+          .pause(1500)
           .click("#sendemail")
-          .pause(5000)
-          .waitForElementVisible(".sweet-alert", 7000);
+          .waitForElementVisible(".sweet-alert", 12000)
+          .assert.visible(".sweet-alert")
+          .pause(600)           // <- Kurze Pause, damit das Popup bereit ist
+          .click(".confirm")    // <- SweetAlert-OK-Button
+          .pause(2000);          // <- Pause nach dem Klick
+      });
 
+      // Seite reloaden – das ist stabiler, als auf Verschwinden zu warten
+      browser.perform(() => {
+        if (idx < arr.length - 1) {
+          browser.url("http://sampleapp.tricentis.com/101/").pause(1400);
+          browser.waitForElementVisible('body', 2500);
+        }
       });
     });
-    
+
     browser.end();
   }
 };

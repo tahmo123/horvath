@@ -5,13 +5,11 @@
 
   <testsuite name="engineperformance" id="engineperformance"
     errors="0" failures="1" hostname="" package="engineperformance" skipped="0"
-    tests="1" time="13.75" timestamp="">
+    tests="1" time="15.58" timestamp="">
   
-    <testcase name="Automated Vehicle Insurance Scenarios" classname="engineperformance" time="13.74" assertions="2">
+    <testcase name="Automated Vehicle Insurance Scenarios" classname="engineperformance" time="15.58" assertions="2">
 
-      <failure message="Timed out while waiting for element &lt;#startdate&gt; to be present for 10000 milliseconds. - expected &#34;visible&#34; but got: &#34;not found&#34; (10406ms)">    at C:\horvath\tests\engineperformance.js:55:10
-    at Array.forEach (&lt;anonymous&gt;)
-    at Automated Vehicle Insurance Scenarios (C:\horvath\tests\engineperformance.js:41:14)</failure>
+      <failure message="Timed out while waiting for element &lt;section#pricePlans .ideal-radio&gt; to be visible for 5000 milliseconds. - expected &#34;visible&#34; but got: &#34;not visible&#34; (5320ms)">    at NightwatchAPI.&lt;anonymous&gt; (C:\horvath\tests\engineperformance.js:105:12)</failure>
 
     
     </testcase>

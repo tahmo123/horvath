@@ -1,51 +1,478 @@
-const fs = require('fs');
-const { parse } = require('csv-parse/sync');
-
-// Funktion zum Platzhalter-Auswerten von Datumsfeldern
-function resolveDynamicDate(placeholder) {
-  const match = placeholder.match(/\{DATE\[\[(.*?)\]\[(.*?)\]\]\}/i);
-  if (!match) return placeholder;
-
-  const offset = match[1]; // z. B. "+1M+1d"
-  const format = match[2]; // z. B. "MM/dd/yyyy"
-
-  let date = new Date();
-
-  const parts = offset.match(/([+-]?\d+)([dMy])/gi);
-  if (parts) {
-    parts.forEach(part => {
-      const [, value, unit] = part.match(/([+-]?\d+)([dMy])/);
-      const num = parseInt(value);
-      if (unit === 'd') date.setDate(date.getDate() + num);
-      if (unit === 'M') date.setMonth(date.getMonth() + num);
-      if (unit === 'y') date.setFullYear(date.getFullYear() + num);
-    });
-  }
-
-  const map = {
-    dd: String(date.getDate()).padStart(2, '0'),
-    MM: String(date.getMonth() + 1).padStart(2, '0'),
-    yyyy: date.getFullYear()
-  };
-
-  return format.replace(/dd|MM|yyyy/g, match => map[match]);
+// ---- Hilfsfunktionen für dynamische Daten ----
+function formatDate(date) {
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0");
+  const yyyy = date.getFullYear();
+  return `${mm}/${dd}/${yyyy}`;
 }
 
-// Datei lesen
-const csv = fs.readFileSync(__dirname + '/Scenarios_Vehicle_Insurance_App.csv', 'utf8');
-const records = parse(csv, { columns: true, skip_empty_lines: true });
+function yearsAgo(years) {
+  const d = new Date();
+  d.setFullYear(d.getFullYear() - years);
+  return formatDate(d);
+}
 
-// Werte und Platzhalter verarbeiten
-const data = {};
-records.forEach(row => {
-  const scenarioName = row['Scenarios'] || row['Scenario'] || row['Attributes'] || Object.keys(row)[0];
-  const resolved = {};
-  for (const key in row) {
-    resolved[key] = typeof row[key] === 'string' && row[key].includes('{DATE') 
-      ? resolveDynamicDate(row[key])
-      : row[key];
+function monthsAndDaysFromNow(months, days) {
+  const d = new Date();
+  d.setMonth(d.getMonth() + months);
+  d.setDate(d.getDate() + days);
+  return formatDate(d);
+}
+
+function getBirthdate(age) {
+  const today = new Date();
+  today.setFullYear(today.getFullYear() - age);
+  return formatDate(today);
+}
+
+const scenarios = {
+  straightThrough: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "AB123CD",
+    annualMileage: 50000,
+    firstName: "John",
+    lastName: "Smith",
+    birthdate: getBirthdate(26),
+    gender: "Male",
+    street: "Park Avenue 5",
+    country: "United States",
+    zipcode: "10001",
+    city: "New York",
+    occupation: "Employee",
+    website: "https://straightthrough.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 331.0, gold: 977.0, platinum: 1917.0, ultimate: 3652.0 }
+  },
+  enginePerformance1000to2000: {
+    make: "Audi",
+    enginePerformance: 1500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "XY987ZT",
+    annualMileage: 50000,
+    firstName: "Robert",
+    lastName: "Johnson",
+    birthdate: getBirthdate(26),
+    gender: "Male",
+    street: "Elm Street 11",
+    country: "United States",
+    zipcode: "90210",
+    city: "Beverly Hills",
+    occupation: "Employee",
+    website: "https://engperf.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 337.0, gold: 993.0, platinum: 1949.0, ultimate: 3712.0 }
+  },
+  manufacturedMoreThan5Years: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(10),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "YY543EF",
+    annualMileage: 50000,
+    firstName: "Steven",
+    lastName: "Moore",
+    birthdate: getBirthdate(26),
+    gender: "Male",
+    street: "Lindenstraße 7",
+    country: "Germany",
+    zipcode: "80331",
+    city: "Munich",
+    occupation: "Employee",
+    website: "https://oldercar.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 334.0, gold: 983.0, platinum: 1931.0, ultimate: 3678.0 }
+  },
+  listPriceBetween50kAnd100k: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 75000,
+    licensePlateNumber: "PL1000ZZ",
+    annualMileage: 50000,
+    firstName: "Julia",
+    lastName: "Miller",
+    birthdate: getBirthdate(26),
+    gender: "Female",
+    street: "Hauptstraße 21",
+    country: "Austria",
+    zipcode: "1010",
+    city: "Vienna",
+    occupation: "Farmer",
+    website: "https://luxcar.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 466.0, gold: 1374.0, platinum: 2697.0, ultimate: 5137.0 }
+  },
+  ageBetween18and25: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "YU201CC",
+    annualMileage: 50000,
+    firstName: "Lucas",
+    lastName: "Garcia",
+    birthdate: getBirthdate(21),
+    gender: "Male",
+    street: "Sunset Blvd 85",
+    country: "United States",
+    zipcode: "90028",
+    city: "Los Angeles",
+    occupation: "Employee",
+    website: "https://youngdriver.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 331.0, gold: 977.0, platinum: 1917.0, ultimate: 3652.0 }
+  },
+  ageBetween56and70: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "AA709DE",
+    annualMileage: 50000,
+    firstName: "Helen",
+    lastName: "Brown",
+    birthdate: getBirthdate(62),
+    gender: "Female",
+    street: "Kurfürstendamm 10",
+    country: "Germany",
+    zipcode: "10719",
+    city: "Berlin",
+    occupation: "Selfemployed",
+    website: "https://elderdriver.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 331.0, gold: 977.0, platinum: 1917.0, ultimate: 3652.0 }
+  },
+  female: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "XX789FG",
+    annualMileage: 50000,
+    firstName: "Emma",
+    lastName: "Clark",
+    birthdate: getBirthdate(26),
+    gender: "Female",
+    street: "Queen Street 3",
+    country: "United Kingdom",
+    zipcode: "SW1A 1AA",
+    city: "London",
+    occupation: "Unemployed",
+    website: "https://femaleauto.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 331.0, gold: 977.0, platinum: 1917.0, ultimate: 3652.0 }
+  },
+  startDateMonthAfterNextMonth: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "ZZ555HH",
+    annualMileage: 50000,
+    firstName: "Michael",
+    lastName: "Walker",
+    birthdate: getBirthdate(26),
+    gender: "Male",
+    street: "Oxford Road 14",
+    country: "United Kingdom",
+    zipcode: "M13 9PL",
+    city: "Manchester",
+    occupation: "Employee",
+    website: "https://futurestart.com",
+    preferredStartDate: monthsAndDaysFromNow(2, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 331.0, gold: 977.0, platinum: 1917.0, ultimate: 3652.0 }
+  },
+  insuranceSumBetween15MAnd35M: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "FG200DD",
+    annualMileage: 50000,
+    firstName: "Tom",
+    lastName: "Evans",
+    birthdate: getBirthdate(26),
+    gender: "Male",
+    street: "Stresemannstraße 22",
+    country: "Germany",
+    zipcode: "20095",
+    city: "Hamburg",
+    occupation: "Employee",
+    website: "https://highsum.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 25000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 338.0, gold: 995.0, platinum: 1953.0, ultimate: 3721.0 }
+  },
+  meritRatingSuperBonus: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "MB301GG",
+    annualMileage: 50000,
+    firstName: "Oliver",
+    lastName: "White",
+    birthdate: getBirthdate(26),
+    gender: "Male",
+    street: "Broadway 42",
+    country: "United States",
+    zipcode: "10036",
+    city: "New York",
+    occupation: "Farmer",
+    website: "https://superbonus.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Super Bonus",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 322.0, gold: 948.0, platinum: 1861.0, ultimate: 3546.0 }
+  },
+  meritRatingMalusBetween10and17: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "HU108JK",
+    annualMileage: 50000,
+    firstName: "Sophia",
+    lastName: "Davis",
+    birthdate: getBirthdate(26),
+    gender: "Female",
+    street: "Karl-Liebknecht-Str. 15",
+    country: "Germany",
+    zipcode: "04109",
+    city: "Leipzig",
+    occupation: "Employee",
+    website: "https://malus13.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Malus 13",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 370.0, gold: 1090.0, platinum: 2141.0, ultimate: 4078.0 }
+  },
+  damageInsuranceNoCoverage: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "NC789LM",
+    annualMileage: 50000,
+    firstName: "Emily",
+    lastName: "Lewis",
+    birthdate: getBirthdate(26),
+    gender: "Female",
+    street: "Fifth Avenue 333",
+    country: "United States",
+    zipcode: "10016",
+    city: "New York",
+    occupation: "Employee",
+    website: "https://nocover.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "No Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 282.0, gold: 832.0, platinum: 1634.0, ultimate: 3112.0 }
+  },
+  damageInsuranceFullCoverage: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "FU100PP",
+    annualMileage: 50000,
+    firstName: "Noah",
+    lastName: "Martinez",
+    birthdate: getBirthdate(26),
+    gender: "Male",
+    street: "Baker Street 221B",
+    country: "United Kingdom",
+    zipcode: "2482",
+    city: "London",
+    occupation: "Selfemployed",
+    website: "https://fullcover.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Full Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 348.0, gold: 1027.0, platinum: 2017.0, ultimate: 3841.0 }
+  },
+  euroProtection: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "EU203PP",
+    annualMileage: 50000,
+    firstName: "Hannah",
+    lastName: "Schmidt",
+    birthdate: getBirthdate(26),
+    gender: "Female",
+    street: "Rue de Rivoli 1",
+    country: "France",
+    zipcode: "75001",
+    city: "Paris",
+    occupation: "Unemployed",
+    website: "https://europrotect.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: true,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "No",
+    prices: { silver: 333.0, gold: 981.0, platinum: 1927.0, ultimate: 3670.0 }
+  },
+  optionalProducts3: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "OP301MM",
+    annualMileage: 50000,
+    firstName: "Anna",
+    lastName: "Novak",
+    birthdate: getBirthdate(26),
+    gender: "Female",
+    street: "Vaci utca 12",
+    country: "Hungary",
+    zipcode: "1056",
+    city: "Budapest",
+    occupation: "Farmer",
+    website: "https://opt3.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: true,
+    legalDefenseInsurance: false,
+    courtesyCarOption: "No",
+    prices: { silver: 283.0, gold: 833.0, platinum: 1636.0, ultimate: 3117.0 }
+  },
+  courtesyCar: {
+    make: "Audi",
+    enginePerformance: 500,
+    dateOfManufacture: yearsAgo(3),
+    numberOfSeats: 5,
+    fuelType: "Petrol",
+    listPrice: 20000,
+    licensePlateNumber: "CC404QQ",
+    annualMileage: 50000,
+    firstName: "Liam",
+    lastName: "Anderson",
+    birthdate: getBirthdate(26),
+    gender: "Male",
+    street: "Paseo de Gracia 88",
+    country: "Spain",
+    zipcode: "08008",
+    city: "Barcelona",
+    occupation: "Unemployed",
+    website: "https://courtesycar.com",
+    preferredStartDate: monthsAndDaysFromNow(1, 1),
+    insuranceSum: 7000000,
+    meritRating: "Bonus 5",
+    damageInsurance: "Partial Coverage",
+    euroProtection: false,
+    legalDefenseInsurance: true,
+    courtesyCarOption: "Yes",
+    prices: { silver: 342.0, gold: 1009.0, platinum: 1980.0, ultimate: 3772.0 }
   }
-  data[scenarioName] = resolved;
-});
-
-module.exports = data;
+}; // <-- Abschlussklammer und Semikolon nicht vergessen!
+module.exports = scenarios;
