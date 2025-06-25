@@ -146,5 +146,5 @@ script:
 ## 8. Kontakt
 
 **Autor:**  
-tahmo123 / horvath  
+Khorzad - Gruppe 5   
 [GitHub-Projekt](https://github.com/tahmo123/horvath)
