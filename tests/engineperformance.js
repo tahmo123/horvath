@@ -89,7 +89,7 @@ module.exports = {
           .assert.visible(".sweet-alert")
           .pause(600)           // <- Kurze Pause, damit das Popup bereit ist
           .click(".confirm")    // <- SweetAlert-OK-Button
-          .pause(2000);          // <- Pause nach dem Klick
+          .pause(3000);          // <- Pause nach dem Klick
       });
 
       // Seite reloaden – das ist stabiler, als auf Verschwinden zu warten

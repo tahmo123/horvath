@@ -88,15 +88,12 @@ module.exports = {
       desiredCapabilities : {
         browserName : 'chrome',
         'goog:chromeOptions' : {
-          // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
-          //
-          // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            //'--no-sandbox',
-            //'--ignore-certificate-errors',
-            //'--allow-insecure-localhost',
-            //'--headless'
+            '--headless',               // Headless-Modus
+            '--no-sandbox',             // (Für CI/CD fast immer empfohlen)
+            '--disable-dev-shm-usage',  // (Optional, für Ressourcenmangel)
+            '--window-size=1920,1080'   // (Optional, falls Darstellungsprobleme)
           ]
         }
       },
@@ -104,11 +101,8 @@ module.exports = {
       webdriver: {
         start_process: true,
         server_path: '',
-        cli_args: [
-          // '--verbose'
-        ]
       }
-    },
+    },    
 
     edge: {
       desiredCapabilities : {
