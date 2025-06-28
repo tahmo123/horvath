@@ -98,11 +98,10 @@ module.exports = {
       },
       webdriver: {
         start_process: true,
-        server_path: require('chromedriver').path,
+        server_path: '', // <--- LEER lassen! Kein require('chromedriver').path!
         port: 9515
       }
-    },
-    
+    },    
 
     edge: {
       desiredCapabilities : {

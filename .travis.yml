@@ -1,19 +1,18 @@
-dist: focal
 language: node_js
 node_js:
   - "18"
 
 addons:
-  chrome: stable
-
-services:
-  - xvfb
+  chrome: stable # Chrome installieren
 
 install:
   - npm install
 
 before_script:
-  - chmod +x node_modules/.bin/nightwatch
+  - export DISPLAY=:99.0
+  - sudo systemctl start xvfb
+  - which chromedriver
+  - chromedriver --version
 
 script:
   - npx nightwatch --env chrome tests/engineperformance.js
