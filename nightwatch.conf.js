@@ -84,7 +84,7 @@ module.exports = {
       }
     },
 
-    cchrome: {
+    chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
         'goog:chromeOptions': {
