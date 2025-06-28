@@ -12,8 +12,6 @@ install:
 before_script:
   - export DISPLAY=:99.0
   - sudo systemctl start xvfb
-  - which chromedriver
-  - chromedriver --version
 
 script:
   - npx nightwatch --env chrome tests/engineperformance.js
