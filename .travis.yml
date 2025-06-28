@@ -1,9 +1,10 @@
+dist: focal
 language: node_js
 node_js:
   - "18"
 
 addons:
-  chrome: stable # Chrome installieren
+  chrome: stable
 
 install:
   - npm install
