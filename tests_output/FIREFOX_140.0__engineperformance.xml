@@ -5,9 +5,9 @@
 
   <testsuite name="engineperformance" id="engineperformance"
     errors="0" failures="1" hostname="" package="engineperformance" skipped="0"
-    tests="1" time="161.2" timestamp="">
+    tests="1" time="62.69" timestamp="">
   
-    <testcase name="Automated Vehicle Insurance Scenarios" classname="engineperformance" time="161.2" assertions="32">
+    <testcase name="Automated Vehicle Insurance Scenarios" classname="engineperformance" time="62.69" assertions="10">
 
     
 
@@ -25,51 +25,7 @@
 
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-      <failure message="Timed out while waiting for element &lt;section#pricePlans .ideal-radio&gt; to be visible for 8000 milliseconds. - expected &#34;visible&#34; but got: &#34;not visible&#34; (8382ms)">    at NightwatchAPI.&lt;anonymous&gt; (C:\horvath\tests\engineperformance.js:74:12)</failure>
+      <failure message="Timed out while waiting for element &lt;body&gt; to be present for 2500 milliseconds. - expected &#34;visible&#34; but got: &#34;not found&#34; (3754ms)">    at NightwatchAPI.&lt;anonymous&gt; (C:\horvath\tests\engineperformance.js:99:19)</failure>
 
     
     </testcase>

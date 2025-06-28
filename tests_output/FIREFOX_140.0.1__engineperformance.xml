@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="25"
+            failures="1"
+            tests="1">
+
+  <testsuite name="engineperformance" id="engineperformance"
+    errors="25" failures="1" hostname="" package="engineperformance" skipped="0"
+    tests="1" time="199.6" timestamp="">
+  
+    <testcase name="Automated Vehicle Insurance Scenarios" classname="engineperformance" time="199.6" assertions="12">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Timed out while waiting for element &lt;section#pricePlans .ideal-radio&gt; to be present for 8000 milliseconds. - expected &#34;visible&#34; but got: &#34;not found&#34; (8225ms)">    at NightwatchAPI.&lt;anonymous&gt; (C:\horvath\tests\engineperformance.js:74:12)</failure>
+
+    
+    <error message="Timed out while waiting for element &lt;section#pricePlans .ideal-radio&gt; to be present for 8000 milliseconds. - expected [32m&#34;visible&#34;[39m but got: [31m&#34;not found&#34;[39m [90m(8225ms)[39m" type="error"><![CDATA[
+    Error
+    at NightwatchAPI.&lt;anonymous&gt; (C:\horvath\tests\engineperformance.js:74:12)
+    at Object.apply (C:\horvath\node_modules\nightwatch\lib\api\_loaders\_base-loader.js:411:29)
+    at CommandInstance.runCallback (C:\horvath\node_modules\nightwatch\lib\api\client-commands\perform.js:126:17)
+    at CommandInstance.command (C:\horvath\node_modules\nightwatch\lib\api\client-commands\perform.js:78:27)
+    at C:\horvath\node_modules\nightwatch\lib\api\_loaders\command.js:194:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    ]]></error>
+    
+    </testcase>
+  
+
+  
+    <system-err>
+       NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#make&gt;: Timed out while waiting for element &#34;#make&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;error&#34;:{&#34;name&#34;:&#34;NoSuchWindowError&#34;,&#34;remoteStacktrace&#34;:&#34;&#34;},&#34;status&#34;:-1,&#34;value&#34;:null}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:14
+    –––––––––––––––––––––––––––––––––––––––
+     12 | 
+     13 |           // --- Enter Vehicle Data ---
+     14 |           .setValue(&#34;#make&#34;, szenario.make) 
+     15 |           .setValue(&#34;#engineperformance&#34;, szenario.enginePerformance.toString())
+     16 |           .setValue(&#34;#dateofmanufacture&#34;, szenario.dateOfManufacture)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#engineperformance&gt;: Timed out while waiting for element &#34;#engineperformance&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:15
+    –––––––––––––––––––––––––––––––––––––––
+     13 |           // --- Enter Vehicle Data ---
+     14 |           .setValue(&#34;#make&#34;, szenario.make)
+     15 |           .setValue(&#34;#engineperformance&#34;, szenario.enginePerformance.toString()) 
+     16 |           .setValue(&#34;#dateofmanufacture&#34;, szenario.dateOfManufacture)
+     17 |           .setValue(&#34;#numberofseats&#34;, szenario.numberOfSeats.toString())
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#dateofmanufacture&gt;: Timed out while waiting for element &#34;#dateofmanufacture&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:16
+    –––––––––––––––––––––––––––––––––––––––
+     14 |           .setValue(&#34;#make&#34;, szenario.make)
+     15 |           .setValue(&#34;#engineperformance&#34;, szenario.enginePerformance.toString())
+     16 |           .setValue(&#34;#dateofmanufacture&#34;, szenario.dateOfManufacture) 
+     17 |           .setValue(&#34;#numberofseats&#34;, szenario.numberOfSeats.toString())
+     18 |           .setValue(&#34;#fuel&#34;, szenario.fuelType)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#numberofseats&gt;: Timed out while waiting for element &#34;#numberofseats&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:17
+    –––––––––––––––––––––––––––––––––––––––
+     15 |           .setValue(&#34;#engineperformance&#34;, szenario.enginePerformance.toString())
+     16 |           .setValue(&#34;#dateofmanufacture&#34;, szenario.dateOfManufacture)
+     17 |           .setValue(&#34;#numberofseats&#34;, szenario.numberOfSeats.toString()) 
+     18 |           .setValue(&#34;#fuel&#34;, szenario.fuelType)
+     19 |           .setValue(&#34;#listprice&#34;, szenario.listPrice.toString())
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#fuel&gt;: Timed out while waiting for element &#34;#fuel&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:18
+    –––––––––––––––––––––––––––––––––––––––
+     16 |           .setValue(&#34;#dateofmanufacture&#34;, szenario.dateOfManufacture)
+     17 |           .setValue(&#34;#numberofseats&#34;, szenario.numberOfSeats.toString())
+     18 |           .setValue(&#34;#fuel&#34;, szenario.fuelType) 
+     19 |           .setValue(&#34;#listprice&#34;, szenario.listPrice.toString())
+     20 |           .setValue(&#34;#licenseplatenumber&#34;, szenario.licensePlateNumber)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#listprice&gt;: Timed out while waiting for element &#34;#listprice&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:19
+    –––––––––––––––––––––––––––––––––––––––
+     17 |           .setValue(&#34;#numberofseats&#34;, szenario.numberOfSeats.toString())
+     18 |           .setValue(&#34;#fuel&#34;, szenario.fuelType)
+     19 |           .setValue(&#34;#listprice&#34;, szenario.listPrice.toString()) 
+     20 |           .setValue(&#34;#licenseplatenumber&#34;, szenario.licensePlateNumber)
+     21 |           .setValue(&#34;#annualmileage&#34;, szenario.annualMileage.toString())
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#licenseplatenumber&gt;: Timed out while waiting for element &#34;#licenseplatenumber&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:20
+    –––––––––––––––––––––––––––––––––––––––
+     18 |           .setValue(&#34;#fuel&#34;, szenario.fuelType)
+     19 |           .setValue(&#34;#listprice&#34;, szenario.listPrice.toString())
+     20 |           .setValue(&#34;#licenseplatenumber&#34;, szenario.licensePlateNumber) 
+     21 |           .setValue(&#34;#annualmileage&#34;, szenario.annualMileage.toString())
+     22 |           .click(&#34;#nextenterinsurantdata&#34;)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#annualmileage&gt;: Timed out while waiting for element &#34;#annualmileage&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:21
+    –––––––––––––––––––––––––––––––––––––––
+     19 |           .setValue(&#34;#listprice&#34;, szenario.listPrice.toString())
+     20 |           .setValue(&#34;#licenseplatenumber&#34;, szenario.licensePlateNumber)
+     21 |           .setValue(&#34;#annualmileage&#34;, szenario.annualMileage.toString()) 
+     22 |           .click(&#34;#nextenterinsurantdata&#34;)
+     23 |           .pause(700)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .click() command on &lt;#nextenterinsurantdata&gt;: Timed out while waiting for element &#34;#nextenterinsurantdata&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:22
+    –––––––––––––––––––––––––––––––––––––––
+     20 |           .setValue(&#34;#licenseplatenumber&#34;, szenario.licensePlateNumber)
+     21 |           .setValue(&#34;#annualmileage&#34;, szenario.annualMileage.toString())
+     22 |           .click(&#34;#nextenterinsurantdata&#34;) 
+     23 |           .pause(700)
+     24 | 
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#firstname&gt;: Timed out while waiting for element &#34;#firstname&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:26
+    –––––––––––––––––––––––––––––––––––––––
+     24 | 
+     25 |           // --- Enter Insurant Data ---
+     26 |           .setValue(&#34;#firstname&#34;, szenario.firstName) 
+     27 |           .setValue(&#34;#lastname&#34;, szenario.lastName)
+     28 |           .setValue(&#34;#birthdate&#34;, szenario.birthdate)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#lastname&gt;: Timed out while waiting for element &#34;#lastname&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:27
+    –––––––––––––––––––––––––––––––––––––––
+     25 |           // --- Enter Insurant Data ---
+     26 |           .setValue(&#34;#firstname&#34;, szenario.firstName)
+     27 |           .setValue(&#34;#lastname&#34;, szenario.lastName) 
+     28 |           .setValue(&#34;#birthdate&#34;, szenario.birthdate)
+     29 |           .perform(() =&gt; {
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#birthdate&gt;: Timed out while waiting for element &#34;#birthdate&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:28
+    –––––––––––––––––––––––––––––––––––––––
+     26 |           .setValue(&#34;#firstname&#34;, szenario.firstName)
+     27 |           .setValue(&#34;#lastname&#34;, szenario.lastName)
+     28 |           .setValue(&#34;#birthdate&#34;, szenario.birthdate) 
+     29 |           .perform(() =&gt; {
+     30 |             browser.execute(function (gender) {
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#streetaddress&gt;: Timed out while waiting for element &#34;#streetaddress&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:35
+    –––––––––––––––––––––––––––––––––––––––
+     33 |             }, [szenario.gender]);
+     34 |           })
+     35 |           .setValue(&#34;#streetaddress&#34;, szenario.street) 
+     36 |           .setValue(&#34;#country&#34;, szenario.country)
+     37 |           .setValue(&#34;#zipcode&#34;, szenario.zipcode)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#country&gt;: Timed out while waiting for element &#34;#country&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:36
+    –––––––––––––––––––––––––––––––––––––––
+     34 |           })
+     35 |           .setValue(&#34;#streetaddress&#34;, szenario.street)
+     36 |           .setValue(&#34;#country&#34;, szenario.country) 
+     37 |           .setValue(&#34;#zipcode&#34;, szenario.zipcode)
+     38 |           .setValue(&#34;#city&#34;, szenario.city)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#zipcode&gt;: Timed out while waiting for element &#34;#zipcode&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:37
+    –––––––––––––––––––––––––––––––––––––––
+     35 |           .setValue(&#34;#streetaddress&#34;, szenario.street)
+     36 |           .setValue(&#34;#country&#34;, szenario.country)
+     37 |           .setValue(&#34;#zipcode&#34;, szenario.zipcode) 
+     38 |           .setValue(&#34;#city&#34;, szenario.city)
+     39 |           .setValue(&#34;#occupation&#34;, szenario.occupation)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#city&gt;: Timed out while waiting for element &#34;#city&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:38
+    –––––––––––––––––––––––––––––––––––––––
+     36 |           .setValue(&#34;#country&#34;, szenario.country)
+     37 |           .setValue(&#34;#zipcode&#34;, szenario.zipcode)
+     38 |           .setValue(&#34;#city&#34;, szenario.city) 
+     39 |           .setValue(&#34;#occupation&#34;, szenario.occupation)
+     40 |           .setValue(&#34;#website&#34;, szenario.website)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#occupation&gt;: Timed out while waiting for element &#34;#occupation&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:39
+    –––––––––––––––––––––––––––––––––––––––
+     37 |           .setValue(&#34;#zipcode&#34;, szenario.zipcode)
+     38 |           .setValue(&#34;#city&#34;, szenario.city)
+     39 |           .setValue(&#34;#occupation&#34;, szenario.occupation) 
+     40 |           .setValue(&#34;#website&#34;, szenario.website)
+     41 |           .perform(() =&gt; {
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#website&gt;: Timed out while waiting for element &#34;#website&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:40
+    –––––––––––––––––––––––––––––––––––––––
+     38 |           .setValue(&#34;#city&#34;, szenario.city)
+     39 |           .setValue(&#34;#occupation&#34;, szenario.occupation)
+     40 |           .setValue(&#34;#website&#34;, szenario.website) 
+     41 |           .perform(() =&gt; {
+     42 |             browser.execute(function () {
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .click() command on &lt;#nextenterproductdata&gt;: Timed out while waiting for element &#34;#nextenterproductdata&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:47
+    –––––––––––––––––––––––––––––––––––––––
+     45 |             });
+     46 |           })
+     47 |           .click(&#34;#nextenterproductdata&#34;) 
+     48 |           .pause(700)
+     49 | 
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#startdate&gt;: Timed out while waiting for element &#34;#startdate&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:51
+    –––––––––––––––––––––––––––––––––––––––
+     49 | 
+     50 |           // --- Enter Product Data ---
+     51 |           .setValue(&#34;#startdate&#34;, szenario.preferredStartDate) 
+     52 |           .setValue(&#34;#insurancesum&#34;, szenario.insuranceSum.toString())
+     53 |           .setValue(&#34;#meritrating&#34;, szenario.meritRating)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#insurancesum&gt;: Timed out while waiting for element &#34;#insurancesum&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:52
+    –––––––––––––––––––––––––––––––––––––––
+     50 |           // --- Enter Product Data ---
+     51 |           .setValue(&#34;#startdate&#34;, szenario.preferredStartDate)
+     52 |           .setValue(&#34;#insurancesum&#34;, szenario.insuranceSum.toString()) 
+     53 |           .setValue(&#34;#meritrating&#34;, szenario.meritRating)
+     54 |           .setValue(&#34;#damageinsurance&#34;, szenario.damageInsurance)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#meritrating&gt;: Timed out while waiting for element &#34;#meritrating&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:53
+    –––––––––––––––––––––––––––––––––––––––
+     51 |           .setValue(&#34;#startdate&#34;, szenario.preferredStartDate)
+     52 |           .setValue(&#34;#insurancesum&#34;, szenario.insuranceSum.toString())
+     53 |           .setValue(&#34;#meritrating&#34;, szenario.meritRating) 
+     54 |           .setValue(&#34;#damageinsurance&#34;, szenario.damageInsurance)
+     55 |           .perform(() =&gt; {
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#damageinsurance&gt;: Timed out while waiting for element &#34;#damageinsurance&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:54
+    –––––––––––––––––––––––––––––––––––––––
+     52 |           .setValue(&#34;#insurancesum&#34;, szenario.insuranceSum.toString())
+     53 |           .setValue(&#34;#meritrating&#34;, szenario.meritRating)
+     54 |           .setValue(&#34;#damageinsurance&#34;, szenario.damageInsurance) 
+     55 |           .perform(() =&gt; {
+     56 |             if (szenario.euroProtection === true) {
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .setValue() command on &lt;#courtesycar&gt;: Timed out while waiting for element &#34;#courtesycar&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:69
+    –––––––––––––––––––––––––––––––––––––––
+     67 |             }
+     68 |           })
+     69 |           .setValue(&#34;#courtesycar&#34;, szenario.courtesyCarOption) 
+     70 |           .click(&#34;#nextselectpriceoption&#34;)
+     71 |           .pause(1200)
+    –––––––––––––––––––––––––––––––––––––––
+
+ NoSuchElementError
+   An error occurred while running .click() command on &lt;#nextselectpriceoption&gt;: Timed out while waiting for element &#34;#nextselectpriceoption&#34; with &#34;css selector&#34; to be present for 5000 milliseconds.
+    {&#34;value&#34;:null,&#34;status&#34;:0}
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    C:\horvath\tests\engineperformance.js:70
+    –––––––––––––––––––––––––––––––––––––––
+     68 |           })
+     69 |           .setValue(&#34;#courtesycar&#34;, szenario.courtesyCarOption)
+     70 |           .click(&#34;#nextselectpriceoption&#34;) 
+     71 |           .pause(1200)
+     72 | 
+    –––––––––––––––––––––––––––––––––––––––
+
+    </system-err>
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
