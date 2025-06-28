@@ -12,6 +12,7 @@ install:
 before_script:
   - export DISPLAY=:99.0
   - sudo systemctl start xvfb
+  - ls -l node_modules/.bin/
   - chmod +x node_modules/.bin/nightwatch
 
 script:
