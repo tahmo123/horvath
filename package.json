@@ -11,7 +11,6 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "chromedriver": "^137.0.1",
     "nightwatch": "^3.12.2"
   },
   "dependencies": {
