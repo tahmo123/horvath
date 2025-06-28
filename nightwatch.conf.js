@@ -101,7 +101,7 @@ module.exports = {
         server_path: '', // LEER, damit der systemweite Chromedriver verwendet wird!
         port: 9515
       }
-    }       
+    },       
 
     edge: {
       desiredCapabilities : {
