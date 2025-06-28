@@ -2,19 +2,16 @@ language: node_js
 node_js:
   - "18"
 
-dist: focal        # Moderne Ubuntu-Version verwenden!
-
 addons:
-  chrome: stable   # Chrome installieren
+  chrome: stable  # Chrome installieren
 
 install:
   - npm install
 
 before_script:
   - export DISPLAY=:99.0
-  - Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+  - sh -e /etc/init.d/xvfb start
   - sleep 3
-  - chmod +x ./node_modules/.bin/nightwatch
 
 script:
-  - ./node_modules/.bin/nightwatch --env chrome tests/engineperformance.js
+  - npx nightwatch --env chrome tests/engineperformance.js

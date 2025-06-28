@@ -85,24 +85,24 @@ module.exports = {
     },
 
     chrome: {
-      desiredCapabilities : {
-        browserName : 'chrome',
-        'goog:chromeOptions' : {
-          w3c: true,
-          args: [
-            '--headless',               // Headless-Modus
-            '--no-sandbox',             // (Für CI/CD fast immer empfohlen)
-            '--disable-dev-shm-usage',  // (Optional, für Ressourcenmangel)
-            '--window-size=1920,1080'   // (Optional, falls Darstellungsprobleme)
-          ]
-        }
-      },
-
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: require('chromedriver').path,
+        port: 9515
+      },
+      desiredCapabilities: {
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+          w3c: true,
+          args: [
+            '--headless',               // Headless-Modus für CI
+            '--no-sandbox',             // Wird oft für CI benötigt
+            '--disable-dev-shm-usage',  // Für Speicherprobleme in CI
+            '--window-size=1920,1080'   // Optionale Größe
+          ]
+        }
       }
-    },    
+    },       
 
     edge: {
       desiredCapabilities : {
