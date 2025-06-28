@@ -85,24 +85,23 @@ module.exports = {
     },
 
     chrome: {
-      webdriver: {
-        start_process: true,
-        server_path: require('chromedriver').path,
-        port: 9515
-      },
       desiredCapabilities: {
         browserName: 'chrome',
         'goog:chromeOptions': {
           w3c: true,
           args: [
-            '--headless',               // Headless-Modus für CI
-            '--no-sandbox',             // Wird oft für CI benötigt
-            '--disable-dev-shm-usage',  // Für Speicherprobleme in CI
-            '--window-size=1920,1080'   // Optionale Größe
+            '--headless',
+            '--no-sandbox',
+            '--disable-dev-shm-usage'
           ]
         }
+      },
+      webdriver: {
+        start_process: true,
+        server_path: '', // LEER, damit der systemweite Chromedriver verwendet wird!
+        port: 9515
       }
-    },       
+    }       
 
     edge: {
       desiredCapabilities : {
