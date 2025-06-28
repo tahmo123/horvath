@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - "18"
 
+dist: focal        # <-- Moderne Ubuntu-Version verwenden!
+
 addons:
   chrome: stable   # Chrome installieren
 
