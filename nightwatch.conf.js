@@ -84,7 +84,7 @@ module.exports = {
       }
     },
 
-    chrome: {
+    cchrome: {
       desiredCapabilities: {
         browserName: 'chrome',
         'goog:chromeOptions': {
@@ -98,10 +98,11 @@ module.exports = {
       },
       webdriver: {
         start_process: true,
-        server_path: '', // LEER, damit der systemweite Chromedriver verwendet wird!
+        server_path: require('chromedriver').path,
         port: 9515
       }
-    },       
+    },
+    
 
     edge: {
       desiredCapabilities : {
