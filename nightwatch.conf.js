@@ -103,7 +103,6 @@ module.exports = {
       }
     },
     
-
     edge: {
       desiredCapabilities : {
         browserName : 'MicrosoftEdge',
