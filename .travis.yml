@@ -12,6 +12,7 @@ install:
 before_script:
   - export DISPLAY=:99.0
   - sudo systemctl start xvfb
+  - chmod +x node_modules/.bin/nightwatch
 
 script:
   - npx nightwatch --env chrome tests/engineperformance.js
